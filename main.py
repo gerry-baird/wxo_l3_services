@@ -1,9 +1,8 @@
 from fastapi import FastAPI, Depends
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.routing import APIRoute
-from model.models import LLM_Request, LLM_Response, Message
+from model.models import LLM_Request, LLM_Response, Message, Customers, Customer
 from responses.response_util import build_data
-from deep_compare import CompareVariables
 
 app = FastAPI()
 security = HTTPBasic()
@@ -16,6 +15,41 @@ preset_responses = build_data()
 async def ping(credentials: HTTPBasicCredentials = Depends(security)) -> Message:
     return {"message": "WxO L3 services are alive"}
 
+@app.get("/query",
+         summary='Customers with recent life events',
+         description='Customers with recent life events',
+         response_description="Customers with recent life events",
+         tags=["Customers"]
+         )
+async def get_customers(q: str="q=select+Id,AccountId,Name,Email,Recent_Change__c,Child_Age__c,Child_Covered__c,Child_Name__c+from+contact+where+AccountId='001Hs00002ubq6YIAQ'") -> Customers:
+    customer1 = Customer(
+        name="Janet Thomas",
+        age=64,
+        id="abc",
+        accountId="1234",
+        email="janetthomas@gmail.com",
+        recent_change="Recently turned 64"
+    )
+
+    customer2 = Customer(
+        name="Jim",
+        age=42,
+        id="abcd",
+        accountId="4321",
+        email="oliverpaul@gmail.com",
+        recent_change="Purchased new vehicle"
+    )
+
+    customer_list = list()
+    customer_list.append(customer1)
+    customer_list.append(customer2)
+
+    customer_list = Customers(
+        totalSize=2,
+        records=customer_list
+    )
+
+    return customer_list
 
 @app.post("/v1/generate")
 async def generate(llm_request: LLM_Request) -> LLM_Response:

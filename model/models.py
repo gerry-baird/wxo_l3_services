@@ -18,3 +18,15 @@ class LLM_Cache_Entry(BaseModel):
 
 class Message(BaseModel):
     message: str
+
+class Customer(BaseModel):
+    name: str
+    age: int
+    id: str
+    accountId: str
+    email: str
+    recent_change: str
+
+class Customers(BaseModel):
+    totalSize: int
+    records: list[Customer]
