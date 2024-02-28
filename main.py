@@ -11,13 +11,16 @@ security = HTTPBasic()
 # this is our datastore
 preset_responses = build_data()
 
-@app.get("/ping")
+@app.get("/ping",
+         summary='Ping',
+         description='Ping',
+         )
 async def ping(credentials: HTTPBasicCredentials = Depends(security)) -> Message:
     return {"message": "WxO L3 services are alive"}
 
 @app.get("/query",
-         summary='Customers with recent life events',
-         description='Customers with recent life events',
+         summary='Get a list of customers with recent life events',
+         description='Get a list of customers with recent life events',
          response_description="Customers with recent life events",
          tags=["Customers"]
          )
@@ -51,7 +54,12 @@ async def get_customers(q: str="q=select+Id,AccountId,Name,Email,Recent_Change__
 
     return customer_list
 
-@app.post("/v1/generate")
+@app.post("/v1/generate",
+          summary='Content Generation',
+          description='Content Generation',
+          response_description="Customers with recent life events",
+          tags=["Customers"]
+          )
 async def generate(llm_request: LLM_Request) -> LLM_Response:
 
     if "John" in llm_request.prompt:
