@@ -31,16 +31,18 @@ async def get_customers(q: str="q=select+Id,AccountId,Name,Email,Recent_Change__
         id="abc",
         accountId="1234",
         email="janetthomas@gmail.com",
-        recent_change="Recently turned 64"
+        recent_change="Recently turned 64",
+        current_products=[]
     )
 
     customer2 = Customer(
-        name="Jim",
+        name="Oliver Paul",
         age=42,
         id="abcd",
         accountId="4321",
         email="oliverpaul@gmail.com",
-        recent_change="Purchased new vehicle"
+        recent_change="Purchased new vehicle",
+        current_products = ['4+ Vehicle Warranty']
     )
 
     customer_list = list()

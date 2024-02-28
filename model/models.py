@@ -26,6 +26,7 @@ class Customer(BaseModel):
     accountId: str
     email: str
     recent_change: str
+    current_products: list[str]
 
 class Customers(BaseModel):
     totalSize: int
