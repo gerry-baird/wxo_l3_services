@@ -42,7 +42,7 @@ async def get_customers(q: str="q=select+Id,AccountId,Name,Email,Recent_Change__
         accountId="4321",
         email="oliverpaul@gmail.com",
         recent_change="Purchased new vehicle",
-        current_products = ['4+ Vehicle Warranty']
+        current_products = ['Bronze Critical Ilness Cover', 'Gold Home Insurance']
     )
 
     customer_list = list()

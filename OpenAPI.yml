@@ -94,6 +94,11 @@ components:
         recent_change:
           type: string
           title: Recent Change
+        current_products:
+          items:
+            type: string
+          type: array
+          title: Current Products
       type: object
       required:
         - name
@@ -102,6 +107,7 @@ components:
         - accountId
         - email
         - recent_change
+        - current_products
       title: Customer
     Customers:
       properties:
