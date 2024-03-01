@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.routing import APIRoute
 from model.models import LLM_Request, LLM_Response, Message, Customers, Customer
+from responses.customers import create_customers
 from responses.response_util import build_data
 
 app = FastAPI()
@@ -25,34 +26,8 @@ async def ping(credentials: HTTPBasicCredentials = Depends(security)) -> Message
          tags=["Customers"]
          )
 async def get_customers(q: str="q=select+Id,AccountId,Name,Email,Recent_Change__c,Child_Age__c,Child_Covered__c,Child_Name__c+from+contact+where+AccountId='001Hs00002ubq6YIAQ'") -> Customers:
-    customer1 = Customer(
-        name="Janet Thomas",
-        age=64,
-        id="abc",
-        accountId="1234",
-        email="janetthomas@gmail.com",
-        recent_change="Recently turned 64",
-        current_products=[]
-    )
 
-    customer2 = Customer(
-        name="Oliver Paul",
-        age=42,
-        id="abcd",
-        accountId="4321",
-        email="oliverpaul@gmail.com",
-        recent_change="Purchased new vehicle",
-        current_products = ['Bronze Critical Ilness Cover', 'Gold Home Insurance']
-    )
-
-    customer_list = list()
-    customer_list.append(customer1)
-    customer_list.append(customer2)
-
-    customer_list = Customers(
-        totalSize=2,
-        records=customer_list
-    )
+    customer_list = create_customers()
 
     return customer_list
 
