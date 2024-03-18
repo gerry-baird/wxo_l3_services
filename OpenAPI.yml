@@ -7,20 +7,6 @@ info:
 servers:
   - url: https://wxo-l3-services.1d13bpwyy9q7.us-east.codeengine.appdomain.cloud
 paths:
-  /ping:
-    get:
-      summary: Ping
-      description: Ping
-      operationId: ping
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Message'
-      security:
-        - HTTPBasic: []
   /query:
     get:
       tags:
@@ -49,6 +35,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - HTTPBasic: [ ]
   /v1/generate:
     post:
       summary: Content generation
@@ -73,6 +61,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - HTTPBasic: [ ]
 components:
   schemas:
     Customer:
