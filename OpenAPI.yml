@@ -105,6 +105,7 @@ components:
         totalSize:
           type: integer
           title: Totalsize
+          x-ibm-show: false
         records:
           items:
             $ref: '#/components/schemas/Customer'
