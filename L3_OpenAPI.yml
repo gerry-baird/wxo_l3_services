@@ -7,21 +7,13 @@ info:
 servers:
   - url: https://wxo-l3-services.1d13bpwyy9q7.us-east.codeengine.appdomain.cloud
 paths:
-  /query:
+  /query?q=select+Id,AccountId,Name,Email,Recent_Change__c,Child_Age__c,Child_Covered__c,Child_Name__c+from+contact+where+AccountId='001Hs00002ubq6YIAQ':
     get:
       tags:
         - Customers
       summary: Get a list of customers with recent life events
       description: Get a list of customers with recent life events
       operationId: get_customers
-      parameters:
-        - name: q
-          in: query
-          required: false
-          schema:
-            type: string
-            default: q=select+Id,AccountId,Name,Email,Recent_Change__c,Child_Age__c,Child_Covered__c,Child_Name__c+from+contact+where+AccountId='001Hs00002ubq6YIAQ'
-            title: Q
       responses:
         '200':
           description: Customer life events
@@ -36,7 +28,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
       security:
-        - HTTPBasic: [ ]
+        - HTTPBasic: []
   /v1/generate:
     post:
       summary: Content generation
@@ -62,7 +54,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
       security:
-        - HTTPBasic: [ ]
+        - HTTPBasic: []
 components:
   schemas:
     Customer:
