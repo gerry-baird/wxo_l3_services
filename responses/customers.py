@@ -34,7 +34,7 @@ def create_customers():
 
     mary = Customer(
         name="Mary Green",
-        age=42,
+        age=46,
         id="I18624",
         accountId="A27629",
         email="marygreen@abcinsurance.com",
